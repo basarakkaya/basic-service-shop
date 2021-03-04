@@ -2,7 +2,7 @@
 
 Basic shop-alike service selector.
 
-[Demo URL](google.com)
+[Demo URL](https://basic-service-shop.herokuapp.com/)
 
 ## before starting
 
