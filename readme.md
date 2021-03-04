@@ -1,46 +1,15 @@
-# armut frontend department case study
+# basic-service-shop
 
-2021
+Basic shop-alike service selector.
 
-# Goal
+[Demo URL](google.com)
 
-build an armut like job creation process.
+## before starting
 
-[design link:](https://www.figma.com/file/9ZaUyZG2KYzCWT4lgPARvi/Armut-Front-End-Development-Case-Study?node-id=0%3A1)
-[prototype link:](https://www.figma.com/proto/9ZaUyZG2KYzCWT4lgPARvi/Armut-Front-End-Development-Case-Study?node-id=17%3A451&viewport=1085%2C277%2C0.15803225338459015&scaling=scale-down)
+Before starting, the dependecies are need to be downloaded. Run `npm install` in the root directory and `yarn` in the `/client` directory. When the dependencies are installed, the app is ready to be started.
 
-# Description
+## starting the app
 
-- there is a data folder that contains your services and service jsons.
-- examine the design. you will find a "servisler" page that you should supply fromm services.json.
-- when a user clicks a service, he/she should redirect to a path which you should decide and see first question and then next one and next one...
-- every question has a typeid to decide question type. you will find the type descriptions under "Some points to take into account" on figma
-- there are pagenumber and order fields in \*-questions.jsons. if page numbers are same you should check the order field. (espacialy typeid=4)
-- you should collect all the answers and log them to the console when you show the static success page
-- when I click the "x" button I should see the "servisler" page.
-- when I click "<" button I should jump to previous question.
-- typeId:13 is a photo upload element.
+To run the app in development mode, run `npm run dev` in the root directory. It will concurrently run start scripts of both server and client.
 
-# Specification
-
-- you can use React, Angular or Vue
-- do not use any library except aboves.
-- it will work on the latest versions of Chrome and/or Firefox, and use any bleeding-edge Web API you want.
-
-# What we expect
-
-- try to be pixel perfect
-- acceptable user experience
-- minumum number of bugs
-- good implementation
-- acceptable/modern code style
-- high performance
-- try to DRY
-- try to KISS
-
-# Bonus points
-
-- unit tests
-- preproccessors
-- reusable components
-- best practices
+To run the app in production mode, first you need to have a production build of the client. To have it, run `yarn build` in `/client` directory. After that, run `npm start` in the root directory.
