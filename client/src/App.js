@@ -16,7 +16,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <>
       {service ? (
         <ServiceDetails
           service={service}
@@ -26,7 +26,7 @@ const App = () => {
       ) : (
         <ServiceSelector onSelect={onServiceSelected} />
       )}
-    </div>
+    </>
   );
 };
 

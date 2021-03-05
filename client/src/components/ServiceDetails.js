@@ -25,7 +25,7 @@ const Page = styled.div`
 
 const ServiceDetails = ({ service, onCancel }) => {
   const [questions, setQuestions] = useState([]);
-  const [page, setPage] = useState({ current: 0, total: 1 });
+  const [page, setPage] = useState({ current: 0, total: 0 });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const ServiceDetails = ({ service, onCancel }) => {
       <Header
         label={service.name}
         progressPercentage={
-          loading ? 0 : 100 * ((page.current + 1) / page.total)
+          loading || !page.total ? 0 : 100 * ((page.current + 1) / page.total)
         }
         {...(page.current > 0 ? { onBack } : {})}
         onCancel={onCancel}
@@ -67,7 +67,9 @@ const ServiceDetails = ({ service, onCancel }) => {
         {questions.length > 0 &&
           questions
             .filter((question) => question.pageNumber === page.current)
-            .map((question) => <Question question={question} />)}
+            .map((question) => (
+              <Question key={question.id} question={question} />
+            ))}
       </Page>
       <Proceed onClick={proceed} label='Devam' />
     </Container>

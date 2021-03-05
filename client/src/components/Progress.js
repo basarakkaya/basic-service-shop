@@ -20,7 +20,7 @@ const Container = styled.div`
 const Progress = ({ progressPercentage }) => {
   return (
     <Container>
-      <span style={{ width: `${progressPercentage}%` }}></span>
+      <span style={{ width: `${progressPercentage || 0}%` }}></span>
     </Container>
   );
 };

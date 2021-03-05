@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import RenderOption from './RenderOption';
 
 const Title = styled.p`
   text-align: center;
@@ -12,6 +13,7 @@ const Question = ({ question }) => {
   return (
     <div>
       <Title>{question.label}</Title>
+      <RenderOption question={question} />
     </div>
   );
 };
