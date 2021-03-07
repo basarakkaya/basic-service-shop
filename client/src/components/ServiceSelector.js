@@ -35,6 +35,10 @@ const Table = styled.table`
     background-color: #f8f8f8;
     font-weight: 500;
   }
+
+  td {
+    cursor: pointer;
+  }
 `;
 
 const ServiceSelector = ({ onSelect }) => {

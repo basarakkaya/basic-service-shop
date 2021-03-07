@@ -16,6 +16,7 @@ const Container = styled.div`
     width: 100%;
     font-weight: 700;
     font-size: 16px;
+    cursor: pointer;
 
     &:focus {
       outline: none;

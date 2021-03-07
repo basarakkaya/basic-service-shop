@@ -18,25 +18,14 @@ const Button = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 
   &:focus {
     outline: none;
   }
 `;
 
-const Overlay = styled.div`
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-`;
-
-const FileUpload = () => {
-  // TODO: set file uploading staet
-  const [open, toggleOpen] = useState(false);
+const FileUpload = ({ onChange }) => {
   return (
     <Container>
       <label htmlFor='file'>
@@ -48,8 +37,8 @@ const FileUpload = () => {
         id='file'
         type='file'
         style={{ visibility: 'hidden', height: 0, width: 0 }}
+        onChange={(event) => onChange(event.target.value)}
       />
-      {open && <Overlay />}
     </Container>
   );
 };

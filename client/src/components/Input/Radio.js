@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.form`
@@ -12,6 +12,7 @@ const Container = styled.form`
 const Label = styled.label`
   background-color: #f8f8f8;
   border-radius: 3px;
+  cursor: pointer;
 `;
 const ImgContainer = styled.div`
   padding: 12px;
@@ -34,6 +35,7 @@ export const RadioComponent = ({
   name,
   withImage,
   subcomponent = null,
+  checked,
 }) => (
   <Label htmlFor={`radio_${id}`}>
     {withImage && (
@@ -42,19 +44,30 @@ export const RadioComponent = ({
       </ImgContainer>
     )}
     <InputContainer>
-      <RadioInput type='radio' id={`radio_${id}`} value={value} name={name} />
+      <RadioInput
+        type='radio'
+        id={`radio_${id}`}
+        value={value}
+        name={name}
+        defaultChecked={checked}
+      />
       <TextLabel htmlFor={`radio_${id}`}>{value}</TextLabel>
     </InputContainer>
     {subcomponent}
   </Label>
 );
 
-const Radio = ({ question: { values }, name, onChange, withImage }) => {
+const Radio = ({ question: { values }, name, onChange, withImage, value }) => {
   // TODO: handle state
   // TODO: customize radio button checked state color
 
+  const [radioValue, setValue] = useState(value);
+
   const handleChange = (e) => {
-    if (onChange) onChange(e.target.value);
+    if (onChange) {
+      setValue(e.target.value);
+      onChange(e.target.value);
+    }
   };
 
   return (
@@ -67,6 +80,7 @@ const Radio = ({ question: { values }, name, onChange, withImage }) => {
             val={value}
             name={name}
             withImage={withImage}
+            checked={radioValue === value.value}
           />
         ))}
     </Container>

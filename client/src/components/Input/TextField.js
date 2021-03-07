@@ -33,13 +33,25 @@ const HelperText = styled.p`
   margin: 0;
 `;
 
-const TextField = ({ question: { placeHolder } }) => {
+const TextField = ({ question: { placeHolder }, onChange, value = '' }) => {
   // TODO: set error state
   const [error, setError] = useState(false);
+  const [textValue, setValue] = useState(value);
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    onChange(event.target.value);
+  };
 
   return (
     <Container>
-      <Textarea rows='3' error={error} placeholder={placeHolder || ''} />
+      <Textarea
+        rows='3'
+        error={error}
+        placeholder={placeHolder || ''}
+        value={textValue}
+        onChange={handleChange}
+      />
       {error && <HelperText>Bu alan zorunlu</HelperText>}
     </Container>
   );

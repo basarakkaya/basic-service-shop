@@ -9,11 +9,15 @@ const Title = styled.p`
   font-weight: 700;
 `;
 
-const Question = ({ question }) => {
+const Question = ({ question, onChange, selectedServices }) => {
   return (
     <div>
       <Title>{question.label}</Title>
-      <RenderOption question={question} />
+      <RenderOption
+        question={question}
+        onChange={onChange}
+        selectedServices={selectedServices}
+      />
     </div>
   );
 };

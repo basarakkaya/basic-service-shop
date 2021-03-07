@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.form`
@@ -14,22 +14,37 @@ const Dropdown = styled.select`
   border-radius: 3px;
   color: #6e7081;
   padding: 8px;
+  cursor: pointer;
 
   &:focus {
     outline: none;
   }
 `;
 
-const Select = ({ values = [], name = '', placeholder = '' }) => {
-  // TODO: set onChange etc...
+const Select = ({
+  values = [],
+  name = '',
+  placeholder = '',
+  onChange,
+  value = '',
+}) => {
+  const [selectValue, setValue] = useState(value);
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    if (onChange) onChange(event.target.value);
+  };
+
   return (
     <Container>
-      <Dropdown name={name}>
-        <option value='' selected disabled>
+      <Dropdown name={name} onChange={handleChange} value={selectValue}>
+        <option value='' disabled>
           {placeholder}
         </option>
         {values.map((val) => (
-          <option value={val.value}>{val.label}</option>
+          <option key={val.value} value={val.value}>
+            {val.label}
+          </option>
         ))}
       </Dropdown>
     </Container>

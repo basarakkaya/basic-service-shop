@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Minus from '../../assets/Minus';
@@ -18,9 +18,14 @@ const Button = styled.button`
   border-radius: 25px;
   border: 1px solid #c5c6cd;
   background: #fff;
+  cursor: pointer;
 
   &:focus {
     outline: none;
+  }
+
+  &:hover {
+    background: #c5c6cd;
   }
 `;
 
@@ -42,19 +47,32 @@ const Unit = styled.p`
   color: #9c9da9;
 `;
 
-const Stepper = ({ question: { values, unit } }) => {
-  const [index, setIndex] = useState(0);
+const Stepper = ({ question: { values, unit }, onChange, value }) => {
+  const [index, setIndex] = useState(
+    values.findIndex((val) => val.value === value) > -1
+      ? values.findIndex((val) => val.value === value)
+      : 0
+  );
   const displayValues = values.sort((a, b) => a.valueOrder - b.valueOrder);
 
   const increase = () => {
-    if (index !== values.length - 1) setIndex(index + 1);
+    if (index !== values.length - 1) {
+      onChange(values[index + 1].value);
+      setIndex(index + 1);
+    }
   };
 
   const decrease = () => {
-    if (index !== 0) setIndex(index - 1);
+    if (index !== 0) {
+      onChange(values[index - 1].value);
+      setIndex(index - 1);
+    }
   };
 
-  // TODO: button active state css
+  useEffect(() => {
+    onChange(values[index].value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container>

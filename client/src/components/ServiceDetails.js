@@ -27,6 +27,7 @@ const ServiceDetails = ({ service, onCancel }) => {
   const [questions, setQuestions] = useState([]);
   const [page, setPage] = useState({ current: 0, total: 0 });
   const [loading, setLoading] = useState(false);
+  const [services, setServices] = useState({});
 
   useEffect(() => {
     setLoading(true);
@@ -34,6 +35,7 @@ const ServiceDetails = ({ service, onCancel }) => {
       setQuestions(res.questions);
       setPage({ current: 0, total: res.totalPages });
       setLoading(false);
+      setServices({ serviceId: service.serviceId });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [service]);
@@ -46,6 +48,13 @@ const ServiceDetails = ({ service, onCancel }) => {
     } else {
       alert('Seçim tamamlandı');
     }
+  };
+
+  const setServiceHandler = (serviceLabel) => (selection) => {
+    setServices({
+      ...services,
+      [serviceLabel]: selection,
+    });
   };
 
   return (
@@ -68,7 +77,12 @@ const ServiceDetails = ({ service, onCancel }) => {
           questions
             .filter((question) => question.pageNumber === page.current)
             .map((question) => (
-              <Question key={question.id} question={question} />
+              <Question
+                key={question.id}
+                question={question}
+                onChange={setServiceHandler}
+                selectedServices={services}
+              />
             ))}
       </Page>
       <Proceed onClick={proceed} label='Devam' />
